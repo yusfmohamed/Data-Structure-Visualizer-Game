@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=800, height=800, initial-scale=1.0" />
+  <title>Tower of Hanoi Visualizer</title>
+  <link rel="preload" href="../fonts/Minecraft.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="../styles/hanoi_tower.css" />
+</head>
+<body>
+  <div class="crt-scan"></div>
+
+  <button id="backBtn" class="back-btn">← Back to Menu</button>
+
+  <main class="wrap">
+    <h1 class="title">TOWER OF HANOI VISUALIZER</h1>
+
+    <section class="panel">
+      <canvas id="canvas" width="800" height="400"></canvas>
+    </section>
+
+    <section class="controls">
+      <div class="row">
+        <label class="lbl">Number of Disks:</label>
+        <select id="diskCount" class="select">
+          <option value="3">3 (Level 1)</option>
+          <option value="4">4 (Level 2)</option>
+          <option value="5">5 (Level 3)</option>
+          <option value="6">6 (Level 4)</option>
+          <option value="7">7 (Level 5)</option>
+        </select>
+
+        <label class="lbl">Animation Speed:</label>
+        <select id="speed" class="select">
+          <option value="slow">Slow</option>
+          <option value="medium" selected>Medium</option>
+          <option value="fast">Fast</option>
+        </select>
+
+        <button id="resetBtn" class="btn">RESET</button>
+        <button id="solveBtn" class="btn">SOLVE</button>
+        <button id="stepBtn" class="btn">STEP</button>
+      </div>
+
+      <div class="stats">
+        <div class="chip" id="totalMoves">Total Moves Required: 0</div>
+        <div class="chip" id="moveInfo">Move 0/0</div>
+        <div class="chip score">
+          <span>Score:</span>
+          <span id="scoreVal">0</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="columns">
+      <div class="code">
+        <div class="code-title">Recursive Algorithm</div>
+        <pre class="code-list">
+<code id="c0">function hanoi(n, source, auxiliary, target):</code>
+<code id="c1">    if n == 1:</code>
+<code id="c2">        move disk 1 from source to target</code>
+<code id="c3">    else:</code>
+<code id="c4">        hanoi(n-1, source, target, auxiliary)</code>
+<code id="c5">        move disk n from source to target</code>
+<code id="c6">        hanoi(n-1, auxiliary, source, target)</code>
+        </pre>
+      </div>
+
+      <div class="howto">
+        <div class="howto-title">How to Play</div>
+        <ul>
+          <li>Select disk count (this sets the level).</li>
+          <li>Click pegs to move the top disk (obey the rules!).</li>
+          <li>Use <b>SOLVE</b> to auto-animate or <b>STEP</b> to go one move at a time.</li>
+          <li><b>RESET</b> restarts with the current disk count.</li>
+          <li>Win to earn points! Level 1 = +5, Level 2 = +10, etc.</li>
+        </ul>
+        <div class="rules">
+          <div>Rules</div>
+          <ol>
+            <li>Move only one disk at a time.</li>
+            <li>No larger disk on top of a smaller disk.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Audio -->
+  <audio id="sndError" src="../sfx/error.mp3" preload="auto"></audio>
+  <audio id="sndWin" src="../sfx/win.mp3" preload="auto"></audio>
+  <audio id="sndMove" src="../sfx/push_button.mp3" preload="auto"></audio>
+  <audio id="sndMenu" src="../sfx/menu_button.mp3" preload="auto"></audio>
+
+  <script src="../data_structure/hanoi_tower.js"></script>
+</body>
+</html>

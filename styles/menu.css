@@ -1,0 +1,144 @@
+
+@font-face {
+  font-family: "Minecraft";
+  src: url("assets/fonts/Minecraft.ttf") format("truetype");
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Use svh to handle mobile browser UI chrome */
+html, body {
+  height: 100%;
+}
+
+body {
+  min-height: 100svh;
+  font-family: "Minecraft", monospace;
+  overflow: hidden;
+  color: white;
+}
+
+/* Background */
+#background {
+  position: fixed;
+  inset: 0;
+  background: url("../assets/background.png") no-repeat center center / cover;
+  z-index: -1;
+  filter: none; /* keep original look */
+}
+
+/* Menu container */
+#menu {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+/* Inner layout */
+#heading {
+  font-size: clamp(22px, 4vw, 44px);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.35);
+}
+
+/* Grid of buttons */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: 18px;
+  width: min(720px, 90vw);
+  align-items: center;
+  justify-items: center;
+}
+
+/* Make Hanoi Tower full width across both columns on larger screens */
+.menu-btn.wide {
+  grid-column: 1 / -1;
+}
+
+/* Button style (same vibe as Start/About/Exit) */
+.menu-btn {
+  width: 100%;
+  max-width: 420px;
+  padding: 14px 28px;
+  font-size: clamp(18px, 2.4vw, 28px);
+  font-family: "Minecraft", monospace;
+  color: white;
+  background: transparent;
+  border: 4px solid white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  will-change: transform;
+  user-select: none;
+  outline: none;
+}
+
+.menu-btn:hover,
+.menu-btn:focus-visible {
+  background: white;
+  color: black;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* Back link */
+.menu-actions {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.menu-link {
+  display: inline-block;
+  color: white;
+  border: 3px solid white;
+  padding: 8px 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  font-size: clamp(14px, 1.6vw, 18px);
+}
+
+.menu-link:hover,
+.menu-link:focus-visible {
+  background: white;
+  color: black;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .menu-grid {
+    width: min(640px, 92vw);
+    gap: 16px;
+  }
+}
+
+/* Mobile: single column */
+@media (max-width: 600px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    width: min(480px, 92vw);
+  }
+
+  .menu-btn.wide {
+    grid-column: auto;
+  }
+
+  #heading {
+    margin-bottom: 18px;
+  }
+}

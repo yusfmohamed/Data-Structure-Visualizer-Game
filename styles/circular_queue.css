@@ -1,0 +1,186 @@
+/* Minecraft font */
+@font-face {
+  font-family: "Minecraft";
+  src: url("../fonts/Minecraft.ttf") format("truetype");
+  font-display: swap;
+}
+
+/* Theme variables */
+:root {
+  --bg: #0d0f1a;
+  --panel: #141927;
+  --panel-2: #0f1422;
+  --text: #ffffff;
+  --muted: #cbd5e1;
+  --accent: #8bf6ff;
+  --highlight: #cba6f7;
+  --node-empty: #2a3043;
+  --node-filled: #f38ba8;
+  --node-front: #a6e3a1;
+  --node-rear: #fab387;
+  --node-text: #0b0f1a;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.45), inset 0 0 40px rgba(139,246,255,0.05);
+}
+
+/* Base */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(1200px 800px at 50% -20%, #1b2140 0%, #0d0f1a 60%);
+  color: var(--text);
+  font-family: "Minecraft", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* Fixed 700x700 container */
+#app-container {
+  width: 700px;
+  height: 700px;
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #2b3556;
+}
+
+/* Optional background image */
+#menu-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Title bar */
+#title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 72px;
+  border-bottom: 2px solid #2b3556;
+  position: relative;
+  background: linear-gradient(180deg, rgba(139,246,255,0.05), rgba(203,166,247,0.04));
+}
+#title-bar h1 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 0 #000, 0 0 12px rgba(203,166,247,0.4);
+  color: var(--accent);
+}
+
+/* Back button */
+#back-button {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  padding: 8px 14px;
+}
+
+/* Canvas area */
+#canvas-wrap {
+  padding: 14px 16px 0;
+}
+#queue-canvas {
+  display: block;
+  width: 100%;
+  height: 360px; /* matches HTML */
+  background: #0f1422;
+  border-radius: 12px;
+  border: 2px solid #2b3556;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
+}
+
+/* Info bar */
+#info-bar {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid #2b3556;
+  background: rgba(139,246,255,0.06);
+}
+
+/* Controls */
+#controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  padding: 0 16px 2px;
+}
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+.control-row label {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+#value-input {
+  width: 90px;
+  height: 36px;
+  border-radius: 10px;
+  background: #0f1422;
+  color: var(--text);
+  border: 2px solid #2b3556;
+  outline: none;
+  padding: 0 10px;
+  font-family: "Minecraft", monospace;
+}
+#speed-range {
+  width: 180px;
+  accent-color: var(--accent);
+}
+#speed-label {
+  min-width: 44px;
+  text-align: left;
+  color: var(--muted);
+}
+
+/* Buttons */
+.pixel-button {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-family: "Minecraft", sans-serif;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.6), 0 0 12px rgba(139,246,255,0.15);
+  transition: transform 0.06s ease, filter 0.1s ease;
+  user-select: none;
+}
+.pixel-button:active {
+  transform: translateY(1px) scale(0.98);
+  filter: brightness(0.95);
+}
+
+.green  { background: #6BCB77; color: #04130a; }
+.yellow { background: #FFD93D; color: #1b1600; }
+.blue   { background: #4D96FF; color: #071226; }
+.red    { background: #FF6B6B; color: #280000; }
+.dark   { background: #2a3043; color: #dbe5ff; border: 2px solid #2b3556; }
+
+/* Glow ring around buttons */
+.pixel-button:hover {
+  box-shadow: 0 4px 0 rgba(0,0,0,0.6), 0 0 16px rgba(203,166,247,0.35);
+}

@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Minecraft';
+  src: url('../assets/fonts/Minecraft.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Minecraft', monospace;
+  background-color: #121212; /* Dark outer background */
+  color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 800px;
+  height: 800px;
+  background-color: #1e1e1e;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}

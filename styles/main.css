@@ -1,0 +1,147 @@
+/* Import Minecraft font */
+@font-face {
+  font-family: "Minecraft";
+  src: url("assets/fonts/Minecraft.ttf") format("truetype");
+}
+
+/* Reset + base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: "Minecraft", monospace;
+  overflow: hidden;
+}
+
+/* Background */
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../assets/background.png") no-repeat center center;
+  background-size: cover;
+  z-index: -2;
+}
+
+/* Title */
+#title {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  max-width: 80%;
+  image-rendering: pixelated;
+  z-index: 3;
+}
+
+/* Ground (brick) */
+#ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: url("../assets/brick.png") repeat-x bottom;
+  background-size: contain;
+  z-index: 1;
+}
+
+/* Assets container */
+#assets {
+  position: absolute;
+  bottom: 50px; /* sit right on top of the ground */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 270px;
+  z-index: 2;
+}
+
+#assets img {
+  width: 140px;
+  image-rendering: pixelated;
+  transition: transform 0.3s ease; /* smooth movement */
+}
+
+/* Menu options */
+#menu {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 3;
+}
+
+.menu-btn {
+  font-family: "Minecraft", monospace;
+  font-size: 28px;
+  color: white;
+  background: transparent;
+  border: 4px solid white;
+  padding: 12px 40px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.menu-btn:hover {
+  background: white;
+  color: black;
+  transform: scale(1.1);
+}
+
+/* 📱 Tablet */
+@media (max-width: 768px) {
+  #assets img {
+    width: 100px;
+  }
+  #assets {
+    gap: 150px;
+  }
+  #assets img:first-child {
+    transform: translate(-10px, 27px);
+  }
+  #assets img:last-child {
+    transform: translate(20px, 27px);
+  }
+}
+
+/* 📱 Mobile */
+@media (max-width: 480px) {
+  #assets {
+    gap: 40px;
+  }
+  #assets img {
+    width: 80px;
+  }
+  #assets img:first-child {
+    transform: translate(-15px, 38px);
+  }
+  #assets img:last-child {
+    transform: translate(15px, 38px);
+  }
+
+  #menu .menu-btn {
+    font-size: 18px;
+    padding: 8px 24px;
+  }
+
+  #title {
+    width: 220px;
+  }
+}

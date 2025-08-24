@@ -1,0 +1,144 @@
+@font-face {
+  font-family: "Minecraft";
+  src: url("../fonts/Minecraft.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --bg: #0a0a0a;
+  --panel: #101020;
+  --accent: #00ffff;
+  --accent-dim: #1a1a3a;
+  --node: #4040ff;
+  --node-shade: #000080;
+  --text: #ffffff;
+  --muted: #888888;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Minecraft", monospace;
+  image-rendering: pixelated;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+  position: relative;
+}
+
+.title {
+  text-align: center;
+  color: var(--accent);
+  font-size: 32px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(0,255,255,0.35);
+  margin: 10px 0 20px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 3px solid var(--accent);
+  border-radius: 16px;
+  box-shadow: 0 0 0 4px #001018 inset, 0 10px 30px rgba(0,0,0,0.5);
+  padding: 18px;
+}
+
+#llCanvas {
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: auto 1fr repeat(3, auto);
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto 10px;
+  max-width: 760px;
+}
+
+.label {
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.input {
+  background: var(--panel);
+  color: var(--text);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+  width: 100%;
+  box-shadow: 0 0 0 3px #001018 inset;
+}
+
+.btn, .back-btn {
+  background: var(--panel);
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 0 3px #001018 inset, 0 6px 0 #022;
+  transform: translateY(0);
+  transition: transform 0.05s ease, filter 0.15s ease;
+  user-select: none;
+}
+
+.btn:active, .back-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 3px #001018 inset, 0 3px 0 #022;
+}
+
+.btn:hover, .back-btn:hover {
+  filter: brightness(1.2);
+}
+
+.back-btn {
+  position: fixed;
+  left: 18px;
+  top: 18px;
+  z-index: 3;
+  background: #440000;
+  color: #ffffff;
+  border-color: #ff0000;
+}
+
+.instructions {
+  max-width: 760px;
+  margin: 14px auto 0;
+  color: var(--accent);
+  font-size: 13px;
+}
+
+.instructions ul {
+  margin: 6px 0 0 18px;
+  color: var(--text);
+}
+
+.scanlines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 2px,
+    rgba(0,0,0,0.07) 3px
+  );
+  opacity: 0.25;
+  z-index: 1;
+}

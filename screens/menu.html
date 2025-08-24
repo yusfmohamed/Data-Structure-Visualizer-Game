@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DSA World — Menu</title>
+  <link rel="stylesheet" href="../styles/menu.css" />
+</head>
+<body>
+  <!-- Background -->
+  <div id="background"></div>
+
+  <!-- Menu Wrapper -->
+  <main id="menu">
+    <h1 id="heading">Choose a Module</h1>
+
+    <div class="menu-grid">
+      <!-- Keep simple file names; JS will prefix ../screens/ -->
+      <button class="menu-btn" data-target="stack.html">Stack</button>
+      <button class="menu-btn" data-target="queue.html">Queue</button>
+      <button class="menu-btn" data-target="circular_queue.html">Circular Queue</button>
+      <button class="menu-btn" data-target="linked_list.html">Linked List</button>
+      <button class="menu-btn wide" data-target="hanoi_tower.html">Hanoi Tower</button>
+    </div>
+
+    <div class="menu-actions">
+      <!-- Back to root index -->
+      <a class="menu-link" href="../index.html">⟵ Back</a>
+    </div>
+  </main>
+
+  <!-- Correct script path -->
+  <script src="../script/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Circular Queue Visualizer</title>
+  <meta name="viewport" content="width=700, height=700, initial-scale=1.0" />
+  <link rel="stylesheet" href="../styles/circular_queue.css" />
+</head>
+<body>
+  <div id="app-container">
+    <!-- Optional background image (replace path if you have one) -->
+    <img id="menu-background" src="assets/background/menu.jpg" alt="" />
+
+    <!-- Title -->
+    <header id="title-bar">
+      <h1>CIRCULAR QUEUE</h1>
+      <button id="back-button" class="pixel-button dark">Back</button>
+    </header>
+
+    <!-- Canvas area -->
+    <section id="canvas-wrap">
+      <canvas id="queue-canvas" width="700" height="360"></canvas>
+      <div id="info-bar">Front: -1 | Rear: -1 | Status: Empty</div>
+    </section>
+
+    <!-- Controls -->
+    <section id="controls">
+      <div class="control-row">
+        <label for="value-input">Value</label>
+        <input id="value-input" type="text" maxlength="4" placeholder="e.g. 10" />
+        <button id="enqueue-btn" class="pixel-button green">ENQUEUE</button>
+        <button id="dequeue-btn" class="pixel-button yellow">DEQUEUE</button>
+        <button id="reset-btn" class="pixel-button red">RESET</button>
+        <button id="random-btn" class="pixel-button blue">RANDOM FILL</button>
+      </div>
+
+      <div class="control-row">
+        <label for="speed-range">Speed</label>
+        <input id="speed-range" type="range" min="0.1" max="2.0" value="0.5" step="0.1" />
+        <span id="speed-label">0.5s</span>
+      </div>
+    </section>
+  </div>
+
+  <script src="../data_structure/circular_queue.js"></script>
+</body>
+</html>

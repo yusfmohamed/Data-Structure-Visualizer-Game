@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=800, height=800, initial-scale=1.0" />
+  <title>Linked List Visualizer</title>
+  <link rel="preload" href="../fonts/Minecraft.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="../styles/linked_list.css" />
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <button id="backBtn" class="back-btn">← BACK</button>
+
+  <main class="container">
+    <h1 class="title">LINKED LIST VISUALIZER</h1>
+
+    <div class="panel">
+      <canvas id="llCanvas" width="760" height="300"></canvas>
+    </div>
+
+    <div class="controls">
+      <label for="nodeInput" class="label">NODE VALUE:</label>
+      <input id="nodeInput" class="input" type="text" maxlength="12" placeholder="Enter value" />
+      <button id="insertBtn" class="btn">INSERT</button>
+      <button id="deleteBtn" class="btn">DELETE</button>
+      <button id="resetBtn" class="btn">RESET</button>
+    </div>
+
+    <div class="instructions">
+      <p>HOW TO USE:</p>
+      <ul>
+        <li>Enter a value and click <b>INSERT</b> to add a node</li>
+        <li>Enter a value and click <b>DELETE</b> to remove it</li>
+        <li>Click <b>RESET</b> to clear the list</li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- Audio -->
+  <audio id="sndInsert" src="../sfx/insert_button.mp3" preload="auto"></audio>
+  <audio id="sndDelete" src="../sfx/push_button.mp3" preload="auto"></audio>
+  <audio id="sndMenu"   src="../sfx/menu_button.mp3" preload="auto"></audio>
+
+  <script src="../data_structure/linked_list.js"></script>
+</body>
+</html>

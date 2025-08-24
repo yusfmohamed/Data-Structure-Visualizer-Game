@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=800, height=800, initial-scale=1.0" />
+  <title>DSA World - Stack</title>
+  <link rel="stylesheet" href="../styles/global.css" />
+  <link rel="stylesheet" href="../styles/stack.css" />
+  <link rel="preload" href="../fonts/Minecraft.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+</head>
+<body class="dark-mode">
+  <div class="container">
+    <header>
+      <h1>🧱 Stack Visualizer</h1>
+      <button class="back-btn" onclick="playMenuSoundAndGoBack()">← Back to Menu</button>
+    </header>
+
+    <div class="stack-controls">
+      <input type="text" id="stack-input" maxlength="10" placeholder="Enter value" />
+      <button onclick="pushToStack()">Push</button>
+      <button onclick="popFromStack()">Pop</button>
+      <button onclick="resetStack()">Reset</button>
+    </div>
+
+    <div class="stack-display" id="stack-display">
+      <div class="stack-container" id="stack-container">
+        <!-- Stack elements will appear here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Sound Effects -->
+  <audio id="pushSound" src="../sfx/push_button.mp3" preload="auto"></audio>
+  <audio id="menuSound" src="../sfx/menu_button.mp3" preload="auto"></audio>
+
+  <script src="../data_structure/stack.js"></script>
+  <script>
+    function playMenuSoundAndGoBack() {
+      const menuSound = document.getElementById("menuSound");
+      menuSound.currentTime = 0;
+      menuSound.play();
+      setTimeout(() => {
+        window.location.href = "../screens/menu.html";
+      }, 200); // Slight delay for sound to play
+    }
+  </script>
+</body>
+</html>

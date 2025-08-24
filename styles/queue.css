@@ -1,0 +1,108 @@
+@font-face {
+  font-family: "Minecraft";
+  src: url("../fonts/Minecraft.ttf") format("truetype");
+}
+
+* { box-sizing: border-box; }
+html,body { 
+  height:100%; 
+  margin:0; 
+  background:#0f0f14; 
+  font-family: "Minecraft", monospace; 
+}
+
+#app { 
+  width:100%; 
+  max-width:900px; 
+  margin:18px auto; 
+  position:relative; 
+}
+
+canvas {
+  display:block;
+  margin:0 auto;
+  background: #1e1e2e;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* UI overlay positioned above canvas */
+#ui { 
+  position: absolute; 
+  left: 50%; 
+  top: 0; 
+  transform: translateX(-50%); 
+  width: 800px; 
+  pointer-events: none; 
+}
+
+#backBtn {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  pointer-events: auto;
+}
+
+#title {
+  text-align:center;
+  color:#cba6f7;
+  font-size:28px;
+  font-weight:700;
+  margin: 60px 0 0 0;
+  pointer-events: none;
+}
+
+#controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  pointer-events: auto;
+}
+
+input#valueInput {
+  width:140px;
+  height:36px;
+  padding:6px 10px;
+  font-family:"Minecraft";
+  font-size:14px;
+  border-radius:6px;
+  border: none;
+  outline:none;
+  background:#cdd6f4;
+  color:#000;
+  text-align:center;
+}
+
+.btn {
+  height:36px;
+  padding:6px 14px;
+  font-family:"Minecraft";
+  font-weight:700;
+  border-radius:6px;
+  border:none;
+  cursor:pointer;
+}
+
+.btn:disabled { opacity:0.5; cursor: not-allowed; }
+
+.back {
+  background:#313244;
+  color:#fff;
+  position: absolute;
+  left: 8px;
+  top: 24px;
+}
+
+.enqueue {
+  background:#89b4fa;
+  color:#000;
+}
+
+.dequeue {
+  background:#f38ba8;
+  color:#000;
+}

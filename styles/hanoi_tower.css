@@ -1,0 +1,134 @@
+@font-face {
+  font-family: "Minecraft";
+  src: url("../fonts/Minecraft.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root{
+  --bg:#0a0f14;
+  --panel:#001428;
+  --accent:#00ffff;
+  --accent-soft:#009ca0;
+  --text:#e6f7ff;
+  --muted:#87a0a6;
+  --warn:#ff5555;
+  --ok:#5aff5a;
+  --peg:#8B4513;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  background: radial-gradient(1200px 800px at 50% 0%, #032536 0%, #000810 60%), var(--bg);
+  color:var(--text);
+  font-family:"Minecraft", monospace;
+  image-rendering: pixelated;
+}
+
+.crt-scan{
+  position:fixed; inset:0; pointer-events:none; z-index:1;
+  background:
+    repeating-linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 2px, rgba(0,0,0,0.05) 3px);
+  mix-blend-mode: overlay; opacity:.25;
+}
+
+.wrap{max-width:1000px; margin:0 auto; padding:24px 18px 60px; position:relative;}
+.title{
+  text-align:center; font-size:28px; letter-spacing:1px;
+  color:var(--accent); text-shadow:0 0 10px rgba(0,255,255,.35);
+  margin:6px 0 14px;
+}
+
+.back-btn{
+  position:fixed; left:16px; top:16px; z-index:3;
+  background:#333; color:#fff; border:2px solid #ff0000;
+  border-radius:12px; padding:10px 14px; cursor:pointer;
+  box-shadow:0 0 0 3px #1b0000 inset, 0 6px 0 #220000;
+}
+.back-btn:active{ transform:translateY(3px); box-shadow:0 0 0 3px #1b0000 inset, 0 3px 0 #220000; }
+
+.panel{
+  background:var(--panel); border:3px solid var(--accent); border-radius:18px;
+  padding:14px; box-shadow:0 0 0 4px #001018 inset, 0 12px 36px rgba(0,0,0,.5);
+}
+
+#canvas{ display:block; margin:0 auto; border-radius:10px; }
+
+/* Stack container styling - bottom aligned */
+.stack-container {
+  display: flex;
+  flex-direction: column-reverse; /* makes first pushed element at bottom visually */
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+  min-height: 250px;
+  padding: 10px;
+  background: rgba(0, 20, 40, 0.3);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  box-shadow: 0 0 0 3px #001018 inset;
+}
+
+.stack-item {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 18px;
+  min-width: 50px;
+  text-align: center;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+}
+
+.controls{ margin:16px 0 8px; }
+.row{
+  display:grid; gap:12px; align-items:center;
+  grid-template-columns:auto 160px auto 150px repeat(3, auto);
+}
+.lbl{ color:var(--accent); font-size:14px; }
+.select{
+  background:var(--panel); color:var(--text);
+  border:2px solid var(--accent); border-radius:10px; padding:8px 10px;
+  box-shadow:0 0 0 3px #001018 inset;
+}
+
+.btn{
+  background:var(--panel); color:var(--accent);
+  border:2px solid var(--accent); border-radius:12px; padding:10px 14px;
+  cursor:pointer; font-weight:bold; text-transform:uppercase; letter-spacing:1px;
+  box-shadow:0 0 0 3px #001018 inset, 0 6px 0 #022;
+  transition:filter .12s ease, transform .05s ease;
+}
+.btn:hover{ filter:brightness(1.15); }
+.btn:active{ transform:translateY(3px); box-shadow:0 0 0 3px #001018 inset, 0 3px 0 #022; }
+
+.stats{
+  margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+}
+.chip{
+  border:2px solid var(--accent); color:var(--text); background:rgba(0,20,40,.6);
+  padding:8px 12px; border-radius:999px; font-size:13px;
+  box-shadow:0 0 0 3px #001018 inset;
+}
+.chip.score{ border-color:#6bff8f; box-shadow:0 0 0 3px #0a1e12 inset; }
+.chip.score span:first-child{ margin-right:6px; color:#8affb0; }
+
+.columns{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px; }
+.code, .howto{
+  background:#071b28; border:2px solid var(--accent); border-radius:14px;
+  padding:12px; box-shadow:0 0 0 3px #001018 inset;
+}
+.code-title, .howto-title{
+  color:var(--accent); font-weight:bold; margin-bottom:8px; letter-spacing:1px;
+}
+.code-list{
+  margin:0; padding:10px; background:#00131f; border-radius:10px; overflow:auto; height:180px;
+}
+.code-list code{ display:block; color:#e0f4ff; padding:4px 6px; border-radius:6px; }
+.code-list code.hl{ color:#00ffff; text-shadow:0 0 8px rgba(0,255,255,.7); }
+
+.howto ul{ margin:6px 0 8px 20px; }
+.rules{
+  margin-top:8px; border:1px dashed var(--accent-soft); padding:8px; border-radius:10px; color:#bfefff;
+}
