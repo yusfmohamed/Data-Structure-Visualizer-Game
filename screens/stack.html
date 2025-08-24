@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=800, height=800, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DSA World - Stack</title>
-  <link rel="stylesheet" href="../styles/global.css" />
   <link rel="stylesheet" href="../styles/stack.css" />
   <link rel="preload" href="../fonts/Minecraft.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 </head>
@@ -22,7 +21,7 @@
       <button onclick="resetStack()">Reset</button>
     </div>
 
-    <div class="stack-display" id="stack-display">
+    <div class="stack-display">
       <div class="stack-container" id="stack-container">
         <!-- Stack elements will appear here -->
       </div>
@@ -32,16 +31,62 @@
   <!-- Sound Effects -->
   <audio id="pushSound" src="../sfx/push_button.mp3" preload="auto"></audio>
   <audio id="menuSound" src="../sfx/menu_button.mp3" preload="auto"></audio>
+  <audio id="resetSound" src="../sfx/push_button.mp3" preload="auto"></audio>
 
-  <script src="../data_structure/stack.js"></script>
   <script>
+    const stackContainer = document.getElementById("stack-container");
+    const pushSound = document.getElementById("pushSound");
+    const resetSound = document.getElementById("resetSound");
+
+    // Color palette for stack elements
+    const colors = ["#6a5acd", "#6BCB77", "#FF6B6B", "#FFD93D", "#4D96FF", "#FF914D"];
+    let colorIndex = 0;
+
+    function pushToStack() {
+      const input = document.getElementById("stack-input");
+      const value = input.value.trim();
+      if (value === "") return;
+
+      const element = document.createElement("div");
+      element.className = "stack-element push-animation";
+      element.textContent = value;
+
+      // Assign a new color each push
+      element.style.backgroundColor = colors[colorIndex % colors.length];
+      colorIndex++;
+
+      stackContainer.appendChild(element);
+
+      pushSound.currentTime = 0;
+      pushSound.play();
+
+      input.value = "";
+    }
+
+    function popFromStack() {
+      const lastElement = stackContainer.lastElementChild;
+      if (lastElement) {
+        lastElement.classList.add("pop-animation");
+        lastElement.addEventListener("animationend", () => {
+          lastElement.remove();
+        });
+      }
+    }
+
+    function resetStack() {
+      stackContainer.innerHTML = "";
+      colorIndex = 0;
+      resetSound.currentTime = 0;
+      resetSound.play();
+    }
+
     function playMenuSoundAndGoBack() {
       const menuSound = document.getElementById("menuSound");
       menuSound.currentTime = 0;
       menuSound.play();
       setTimeout(() => {
         window.location.href = "../screens/menu.html";
-      }, 200); // Slight delay for sound to play
+      }, 200);
     }
   </script>
 </body>
