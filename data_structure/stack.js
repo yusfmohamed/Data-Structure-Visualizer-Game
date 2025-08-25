@@ -1,126 +1,83 @@
-// Stack data structure and logic
+// Stack data structure
 const stack = [];
-document.addEventListener("DOMContentLoaded", function () {
-  const toggle = document.getElementById("darkModeToggle");
-
-  // Load from localStorage
-  const currentMode = localStorage.getItem("theme") || "dark";
-  if (currentMode === "light") {
-    document.body.classList.add("light-mode");
-    toggle.textContent = "🌙 Dark Mode";
-  } else {
-    document.body.classList.remove("light-mode");
-    toggle.textContent = "☀️ Light Mode";
-  }
-
-  toggle.addEventListener("click", () => {
-    document.body.classList.toggle("light-mode");
-    const isLight = document.body.classList.contains("light-mode");
-    toggle.textContent = isLight ? "🌙 Dark Mode" : "☀️ Light Mode";
-    localStorage.setItem("theme", isLight ? "light" : "dark");
-  });
-});
-// Get DOM elements
-const input = document.getElementById("stack-input");
 const stackContainer = document.getElementById("stack-container");
-const pushSound = document.getElementById("pushSound"); // sound for push/pop
+const input = document.getElementById("stack-input");
+const pushSound = document.getElementById("pushSound");
+const resetSound = document.getElementById("resetSound");
 
-// Update the visual representation of the stack
-function updateStackView() {
-  stackContainer.innerHTML = "";
-  
-  // Create elements for each item in stack
-  stack.forEach((value) => {
-    const element = document.createElement("div");
-    element.className = "stack-element";
-    element.textContent = value;
-    stackContainer.appendChild(element);
-  });
-}
+// Colors
+const colors = ["#6a5acd", "#6BCB77", "#FF6B6B", "#FFD93D", "#4D96FF", "#FF914D"];
+let colorIndex = 0;
 
-// Push operation with animation
+// Push
 function pushToStack() {
   const value = input.value.trim();
-  
   if (value === "") {
-    alert("Please enter a value to push!");
-    input.focus();
+    alert("Please enter a value!");
     return;
   }
-  
   if (stack.length >= 8) {
-    alert("Stack is full! Maximum 8 elements allowed.");
+    alert("Stack is full (max 8)!");
     return;
   }
 
-  // Play push sound
-  pushSound.currentTime = 0;
-  pushSound.play();
-
-  // Add to stack array
   stack.push(value);
-  
-  // Create new element with push animation
+
   const element = document.createElement("div");
   element.className = "stack-element push-animation";
   element.textContent = value;
+  element.style.backgroundColor = colors[colorIndex % colors.length];
+  colorIndex++;
   stackContainer.appendChild(element);
-  
-  // Clear input and focus
-  input.value = "";
-  input.focus();
-  
-  // Remove animation class after animation completes
-  setTimeout(() => {
-    element.classList.remove("push-animation");
-  }, 500);
-}
 
-// Pop operation with animation
-function popFromStack() {
-  if (stack.length === 0) {
-    alert("Stack is empty! Nothing to pop.");
-    return;
-  }
-
-  // Play pop sound (same as push sound)
   pushSound.currentTime = 0;
   pushSound.play();
 
-  // Get the top element (last child)
-  const topElement = stackContainer.lastElementChild;
-  
-  if (topElement) {
-    // Add pop animation
-    topElement.classList.add("pop-animation");
-    
-    // Remove from array and DOM after animation
-    setTimeout(() => {
-      const poppedValue = stack.pop();
-      stackContainer.removeChild(topElement);
-      console.log(`Popped: ${poppedValue}`);
-    }, 400);
-  }
+  input.value = "";
 }
 
-// Reset stack
-function resetStack() {
+// Pop
+function popFromStack() {
   if (stack.length === 0) {
+    alert("Stack is empty!");
     return;
   }
-  
-  if (confirm("Are you sure you want to clear the entire stack?")) {
-    stack.length = 0;
-    stackContainer.innerHTML = "";
+
+  const topElement = stackContainer.lastElementChild;
+  if (topElement) {
+    topElement.classList.add("pop-animation");
+    setTimeout(() => {
+      stack.pop();
+      topElement.remove();
+    }, 400);
   }
+
+  pushSound.currentTime = 0;
+  pushSound.play();
 }
 
-// Handle Enter key in input for quick push
+// Reset
+function resetStack() {
+  stack.length = 0;
+  stackContainer.innerHTML = "";
+  colorIndex = 0;
+  resetSound.currentTime = 0;
+  resetSound.play();
+}
+
+// Back to Menu
+function playMenuSoundAndGoBack() {
+  const menuSound = document.getElementById("menuSound");
+  menuSound.currentTime = 0;
+  menuSound.play();
+  setTimeout(() => {
+    window.location.href = "../screens/menu.html";
+  }, 200);
+}
+
+// Enter key = Push
 document.addEventListener("DOMContentLoaded", () => {
   input.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      pushToStack();
-    }
+    if (e.key === "Enter") pushToStack();
   });
-  input.focus();
 });
