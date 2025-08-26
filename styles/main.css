@@ -2,13 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 /* Reset + base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-body, html {
+html, body {
   width: 100%;
   height: 100%;
   font-family: 'Press Start 2P', monospace;
@@ -17,35 +13,25 @@ body, html {
 
 /* Background */
 #background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../assets/background.png") no-repeat center center;
-  background-size: cover;
+  position: fixed; inset: 0;
+  background: url("../assets/background.png") no-repeat center center / cover;
   z-index: -2;
 }
 
 /* Title */
 #title {
   position: absolute;
-  top: 50px;
-  left: 50%;
+  top: 50px; left: 50%;
   transform: translateX(-50%);
-  width: 500px;
-  max-width: 80%;
+  width: 500px; max-width: 80%;
   image-rendering: pixelated;
   z-index: 3;
 }
 
 /* Ground (brick) */
 #ground {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 120px;
+  position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 120px;
   background: url("../assets/brick.png") repeat-x bottom;
   background-size: contain;
   z-index: 1;
@@ -54,91 +40,88 @@ body, html {
 /* Assets container */
 #assets {
   position: absolute;
-  bottom: 50px; /* sit right on top of the ground */
-  left: 50%;
+  bottom: 50px; left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 270px;
-  z-index: 2;
+  display: flex; justify-content: center; align-items: flex-end;
+  gap: 270px; z-index: 2;
 }
-
 #assets img {
   width: 140px;
   image-rendering: pixelated;
-  transition: transform 0.3s ease; /* smooth movement */
+  transition: transform 0.3s ease;
 }
 
 /* Menu options */
 #menu {
   position: absolute;
-  top: 55%;
-  left: 50%;
+  top: 55%; left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  z-index: 3;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; z-index: 3;
 }
-
 .menu-btn {
   font-family: 'Press Start 2P', monospace;
-  font-size: 28px;
-  color: white;
-  background: transparent;
-  border: 4px solid white;
-  padding: 12px 40px;
-  cursor: pointer;
+  font-size: 28px; color: #fff;
+  background: transparent; border: 4px solid #fff;
+  padding: 12px 40px; cursor: pointer;
   transition: all 0.2s ease-in-out;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  text-transform: uppercase; letter-spacing: 2px;
 }
+.menu-btn:hover { background: #fff; color: #000; transform: scale(1.1); }
 
-.menu-btn:hover {
-  background: white;
-  color: black;
-  transform: scale(1.1);
-}
-
-/* 📱 Tablet */
+/* Tablet */
 @media (max-width: 768px) {
-  #assets img {
-    width: 100px;
-  }
-  #assets {
-    gap: 150px;
-  }
-  #assets img:first-child {
-    transform: translate(-10px, 27px);
-  }
-  #assets img:last-child {
-    transform: translate(20px, 27px);
-  }
+  #assets img { width: 100px; }
+  #assets { gap: 150px; }
+  #assets img:first-child { transform: translate(-10px, 27px); }
+  #assets img:last-child { transform: translate(20px, 27px); }
 }
 
-/* 📱 Mobile */
+/* Mobile */
 @media (max-width: 480px) {
-  #assets {
-    gap: 40px;
-  }
-  #assets img {
-    width: 80px;
-  }
-  #assets img:first-child {
-    transform: translate(-15px, 38px);
-  }
-  #assets img:last-child {
-    transform: translate(15px, 38px);
-  }
+  #assets { gap: 40px; }
+  #assets img { width: 80px; }
+  #assets img:first-child { transform: translate(-15px, 38px); }
+  #assets img:last-child { transform: translate(15px, 38px); }
 
-  #menu .menu-btn {
-    font-size: 18px;
-    padding: 8px 24px;
-  }
-
-  #title {
-    width: 220px;
-  }
+  #menu .menu-btn { font-size: 18px; padding: 8px 24px; }
+  #title { width: 220px; }
 }
+
+/* -------- MODAL -------- */
+body.modal-active #background,
+body.modal-active #title,
+body.modal-active #assets,
+body.modal-active #ground,
+body.modal-active #menu {
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+#about-modal {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #111; color: #fff;
+  border: 4px solid #fff;
+  padding: 30px 30px 24px;
+  width: 90%; max-width: 600px;
+  text-align: center;
+  z-index: 9999; display: none;
+}
+
+/* Close (X) button */
+#modal-close {
+  position: absolute; top: 10px; right: 12px;
+  width: 44px; height: 44px; line-height: 44px;
+  border: 3px solid #fff; border-radius: 10px;
+  background: transparent; color: #fff;
+  font-size: 28px; font-weight: 700;
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: transform 0.15s ease-in-out, background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+#modal-close:hover { background: #fff; color: #000; transform: scale(1.05); }
+
+#about-modal h2 { font-size: 18px; margin: 10px 0 20px; }
+#about-modal p { font-size: 12px; line-height: 1.6; }

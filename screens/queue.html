@@ -3,25 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Queue Game</title>
-
-  <!-- CSS -->
+  <title>Queue Visualizer</title>
   <link rel="stylesheet" href="../styles/queue.css" />
-
-  <!-- Font preload -->
-  <link rel="preload" href="../assets/fonts/Minecraft.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 </head>
 <body>
   <div id="app">
-    <canvas id="gameCanvas" width="800" height="800"></canvas>
+    <canvas id="gameCanvas"></canvas>
 
     <div id="ui">
       <button id="backBtn" class="btn back">← Back</button>
       <h1 id="title">QUEUE VISUALIZER</h1>
+
       <div id="controls">
-        <input id="valueInput" type="text" placeholder="Value" />
+        <input id="valueInput" type="text" placeholder="Enter value..." />
         <button id="enqueueBtn" class="btn enqueue">Enqueue</button>
         <button id="dequeueBtn" class="btn dequeue" disabled>Dequeue</button>
+      </div>
+
+      <div id="instructions">
+        <p>
+          🎮 HOW TO PLAY:<br>
+          Type a value then press <b>Enqueue</b> to add it.<br>
+          Press <b>Dequeue</b> to remove from front.<br>
+          Queue follows <b>FIFO</b> (First In, First Out).
+        </p>
       </div>
     </div>
   </div>
@@ -32,6 +37,5 @@
 
   <!-- JavaScript -->
   <script src="../data_structure/queue.js"></script>
-  
 </body>
 </html>
