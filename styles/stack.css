@@ -45,6 +45,7 @@ h1 {
   cursor: pointer;
   border-radius: 5px;
   transition: transform 0.2s;
+  font-family: 'Press Start 2P', monospace; /* ✅ fixed font */
 }
 .back-btn:hover { transform: scale(1.05); }
 
@@ -89,6 +90,7 @@ h1 {
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: 'Press Start 2P', monospace; /* ✅ fixed font */
 }
 .stack-controls button:hover { background-color: #3a7ee0; }
 
