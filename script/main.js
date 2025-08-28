@@ -1,5 +1,5 @@
 // Sound for Start & About only
-const clickSound = new Audio("../sfx/menu_button.mp3");
+const clickSound = new Audio("sfx/menu_button.mp3");
 function playClick() {
   try {
     clickSound.currentTime = 0;
